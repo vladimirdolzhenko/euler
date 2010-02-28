@@ -9,7 +9,12 @@
 
 (ns euler3)
 
-(defn max-factor [n]
+(defn 
+ #^{:test (fn []
+	(assert (= 29 (max-factor 13195)))
+  )}	 
+  max-factor [n]
+
 	(
 		(fn [n cur]
 			(if (= n cur) n
@@ -22,4 +27,5 @@
 	)
 )
 
+(println (test #'max-factor))
 (println (max-factor 600851475143))
