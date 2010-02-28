@@ -13,19 +13,17 @@
  #^{:test (fn []
 	(assert (= 29 (max-factor 13195)))
   )}	 
-  max-factor [n]
-
-	(
-		(fn [n cur]
+	max-factor
+	([n] (max-factor n (int (Math/sqrt n))))
+	([n limit]
+		((fn [n cur]
 			(if (= n cur) n
-				(
-					if (zero? (mod n cur)) (recur (/ n cur) cur)
-					(recur n (inc cur))		
-				)
+				(if (zero? (mod n cur)) (recur (/ n cur) cur)
+					(recur n (inc cur)))
 			)
-		) n 2
+		) n 2)
 	)
 )
 
 (println (test #'max-factor))
-(println (max-factor 600851475143))
+(println (time (max-factor 600851475143)))
